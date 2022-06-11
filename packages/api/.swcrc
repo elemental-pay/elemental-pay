@@ -1,0 +1,21 @@
+{
+  "jsc": {
+    "parser": {
+      "syntax": "typescript"
+    }
+  },
+  "module": {
+    "type": "commonjs",
+
+    // These are defaults.
+    "strict": false,
+    "strictMode": true,
+    "lazy": false,
+    "noInterop": false
+  },
+  "env": {
+    "targets": {
+      "node": 16
+    }
+  }
+}

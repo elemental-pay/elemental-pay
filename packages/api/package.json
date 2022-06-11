@@ -4,13 +4,21 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build": "swc src -d lib && npm run build:sql",
+    "build:dev": "npm run build && NODE_ENV=development node --inspect lib/index.js",
+    "build:sql": "cp -r src/db/sql/** lib/db/sql",
+    "dev": "nodemon --ext ts --exec \"npm run build:dev\"",
+    "start": "npm run build && NODE_ENV=production node lib/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.18.1"
+    "elemental-orm": "0.0.1-beta.1",
+    "express": "^4.18.1",
+    "ioredis": "^5.0.6",
+    "pg-promise": "^10.11.1"
   },
   "devDependencies": {
     "@swc/cli": "^0.1.57",
