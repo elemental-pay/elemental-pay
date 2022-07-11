@@ -8,17 +8,23 @@
     "build:dev": "npm run build && NODE_ENV=development node --inspect lib/index.js",
     "build:sql": "cp -r src/db/sql/** lib/db/sql",
     "dev": "nodemon --ext ts --exec \"npm run build:dev\"",
-    "start": "npm run build && NODE_ENV=production node lib/index.js",
+    "start": "npm run build && NODE_ENV=production node lib/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "elemental-orm": "0.0.1-beta.1",
+    "@graphql-tools/merge": "^8.2.15",
+    "@graphql-tools/schema": "^8.4.0",
+    "elemental-orm": "0.0.1-beta.2",
     "express": "^4.18.1",
+    "express-graphql": "^0.12.0",
+    "graphql": "^16.5.0",
+    "graphql-scalars": "^1.17.0",
     "ioredis": "^5.0.6",
-    "pg-promise": "^10.11.1"
+    "pg-promise": "^10.11.1",
+    "redis-server": "^1.2.2"
   },
   "devDependencies": {
     "@swc/cli": "^0.1.57",
