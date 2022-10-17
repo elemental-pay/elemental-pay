@@ -1,0 +1,29 @@
+{
+  "name": "@elemental-pay/components",
+  "version": "0.0.1-beta.0",
+  "description": "",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "clean": "rm -rf lib/",
+    "build:js": "tsc -p tsconfig.json",
+    "build:types": "tsc -d -p tsconfig.json",
+    "build": "npm run clean && npm run build:js && npm run build:types",
+    "dev": "tsc --watch -p tsconfig.json"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@elemental-zcash/components": "0.0.3",
+    "@types/react": "^18.0.15",
+    "elemental-react": "^0.4.0-beta.4",
+    "react": "^18.2.0",
+    "typescript": "^4.7.4"
+  },
+  "peerDependencies": {
+    "react": "^16.0 || ^17.0 || ^18.0",
+    "elemental-react": "^0.0.1",
+    "@elemental-zcash/components": "^0.0.1"
+  }
+}
