@@ -5,9 +5,49 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "start:local": "docker compose -f docker-compose.yml -f docker-compose.local.yml up --build",
+    "start:staging": "docker compose -f docker-compose.yml -f docker-compose.staging.yml up",
+    "start:prod": "docker compose -f docker-compose.yml -f docker-compose.prod.yml up"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "@apollo/client": "^3.7.0",
+    "@elemental-design/material-color-utilities": "^0.2.0-beta.0",
+    "@elemental-pay/components": "0.0.1-beta.1",
+    "@elemental-zcash/components": "0.0.3",
+    "@elemental-zcash/icons": "0.0.1-beta.1",
+    "@react-platform/core": "0.0.3",
+    "@react-platform/native": "0.0.3",
+    "@react-platform/svg": "0.0.1",
+    "elemental-color": "0.0.6-beta.3",
+    "elemental-react": "^0.4.1",
+    "formik": "^2.2.9",
+    "graphql": "^16.6.0",
+    "next": "^12.2.5",
+    "next-transpile-modules": "^9.0.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-native-web": "^0.15.1",
+    "react-primitives": "^0.8.1",
+    "react-primitives-svg": "0.0.3",
+    "react-query": "^3.39.2",
+    "react-select": "^5.4.0",
+    "styled-components": "^5.3.5",
+    "styled-system": "^5.1.5",
+    "webfontloader": "^1.6.28",
+    "yup": "^0.32.11"
+  },
+  "devDependencies": {
+    "@types/graphql": "^14.5.0",
+    "@types/node": "^18.7.15",
+    "@types/react": "^18.0.18",
+    "apollo": "^2.34.0",
+    "typescript": "^4.8.2"
+  }
 }

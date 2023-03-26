@@ -1,0 +1,8 @@
+version: '3' # Version of the Docker Compose file format
+services:
+  web:
+    environment:
+      - VIRTUAL_HOST=staging.elementalpay.com
+      - VIRTUAL_PORT=3000
+      - NODE_ENV=production
+      - NEXT_PUBLIC_APP_ENV=staging
