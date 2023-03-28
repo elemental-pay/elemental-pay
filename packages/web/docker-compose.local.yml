@@ -3,6 +3,7 @@ services:
   web:
     environment:
       - VIRTUAL_HOST=elemental-pay.local
-      - VIRTUAL_PORT=3000
+      - VIRTUAL_PORT=3010
+      - PORT=3010
       - NODE_ENV=development
       - NEXT_PUBLIC_APP_ENV=local

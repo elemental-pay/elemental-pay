@@ -3,12 +3,12 @@ services:
   web:
     build: ./
     environment:
-      - PORT=3000
+      - PORT=3010
     networks:
+      - elemental_net
       - elemental_pay_net
-      - elemental_pay_next_net
 networks:
   elemental_pay_net:
-  elemental_pay_next_net:
+  elemental_net:
     external: true
     driver: bridge

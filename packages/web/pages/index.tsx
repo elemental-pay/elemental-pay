@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import { Box, Text, Row } from 'elemental-react';
+import { Box, Text, Row, Button as _Button } from 'elemental-react';
 import { Button } from '@elemental-zcash/components';
 import InputField from '@elemental-zcash/components/lib/forms/InputField';
 import TextInput from '@elemental-zcash/components/lib/forms/TextInput';
@@ -13,6 +13,9 @@ import { Viewer, ViewerNotFoundError } from '../hooks/use-viewer';
 // import SEND_VERIFICATION_EMAIL from '../graphql/mutations/send-verification-email';
 // import { Link } from '../components/common';
 import { TextButton } from '@elemental-zcash/components/lib/buttons';
+import Layout from '../components/Layout';
+import Section from '../components/common/Section';
+import Link from '../components/common/Link';
 // import RegisterForm from '../components/register/register-form';
 
 
@@ -25,11 +28,31 @@ export default function Home() {
   return (
     <Box flex={1} justifyContent="center" alignItems="center" minHeight="100vh">
       <Head>
-        <title>Elemental Zcash SSO</title>
+        <title>Elemental Pay</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Text>Hello, World!</Text>
+      <Layout>
+        <Section minHeight="75vh" justifyContent="center" alignItems="center" bg="black">
+          <Text fontSize={40} color="white" mb={32}>Elemental Pay</Text>
+          <Row>
+            <Box>
+              <Text fontFamily="IBM Plex Sans">Accept Crypto Payments</Text>
+              <Text fontFamily="IBM Plex Sans" color="white" fontSize={32} lineHeight={40} mb={20}>Accept Crypto Payments</Text>
+              <Text fontFamily="IBM Plex Sans" color="white" fontSize={20} lineHeight={24} mb={16}>Accept crypto payments online on your own website, in person or by email.</Text>
+              {['Non custodial – bring your own wallet.', 'Private – accept Zcash', 'Simple'].map((txt, i) => (
+                <Text key={i} fontFamily="IBM Plex Sans" color="white" fontSize={20} mb="12px">{`- ${txt}`}</Text>
+              ))}
+              <Link href="/pay/checkout">
+                <Button minWidth={156} mt={20} height={52}>
+                  <_Button.Text fontWeight="bold" color="#003796">START DEMO</_Button.Text>
+                </Button>
+              </Link>
+            </Box>
+            <Box width="40%" />
+          </Row>
+        </Section>
+      </Layout>
       {/* <Section width="100%" maxWidth={640}>
         <Box mt={20} alignItems="center">
           {data?.viewer?.__typename === 'Viewer' && data?.viewer?.userId ? (

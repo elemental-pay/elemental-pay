@@ -3,7 +3,7 @@
     "outDir": "lib",
     "rootDir": "src",
     "lib": ["dom", "dom.iterable", "esnext"],
-    "module": "esnext",
+    "module": "commonjs",
     "target": "es5",
 
     "allowJs": true,

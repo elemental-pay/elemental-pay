@@ -11,7 +11,8 @@
     "start": "next start",
     "start:local": "docker compose -f docker-compose.yml -f docker-compose.local.yml up --build",
     "start:staging": "docker compose -f docker-compose.yml -f docker-compose.staging.yml up",
-    "start:prod": "docker compose -f docker-compose.yml -f docker-compose.prod.yml up"
+    "start:prod": "docker compose -f docker-compose.yml -f docker-compose.prod.yml up",
+    "stop": "docker compose -f docker-compose.yml down"
   },
   "keywords": [],
   "author": "",
@@ -29,6 +30,7 @@
     "elemental-react": "^0.4.1",
     "formik": "^2.2.9",
     "graphql": "^16.6.0",
+    "nanoid": "^4.0.2",
     "next": "^12.2.5",
     "next-transpile-modules": "^9.0.0",
     "react": "^17.0.2",
