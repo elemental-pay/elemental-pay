@@ -105,7 +105,7 @@ const Checkout = ({ zecPrice, token, invoiceId, ...props }) => {
               Test Out the Elemental Pay Merchant Flow
             </Text>
             <Text fontSize={20} lineHeight={24}>
-              Disclaimer: this is a proof-of-concept and will evolve over the coming weeks, for now there is no account system, storage or payment validation implemented.
+              Disclaimer: this is a proof-of-concept and will evolve over the coming weeks; for now there is no account system, storage or payment validation implemented.
             </Text>
           </Box>
           <Box flex={1} p={40} bg="greys.1" borderRadius="12px">
