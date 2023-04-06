@@ -1,17 +1,19 @@
 import { mergeTypeDefs } from '@graphql-tools/merge';
 
-import interfaces from './interfaces';
-import userType from './user.type';
-// const invoiceType = require('./invoice.type');
+import interfaces from './interface.types';
+import userType from './user.types';
+import utilType from './util.types';
+import oAuthType from './oauth.types';
 
 const types = [
   interfaces,
   userType,
-  // invoiceType,
+  utilType,
+  oAuthType,
 ];
 
 // NOTE: 2nd param is optional, and defaults to false
 // Only use if you have defined the same type multiple times in
 // different files and wish to attempt merging them together.
-// export default mergeTypeDefs(types, { all: true });
-export default mergeTypeDefs(types);
+// @ts-ignore
+export default mergeTypeDefs(types, { all: true });

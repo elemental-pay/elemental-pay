@@ -1,0 +1,22 @@
+version: '3'
+services:
+  elemental_pay_api:
+    build: .
+    environment:
+      - PORT=4040
+    networks:
+      - elemental_net
+    env_file:
+      .env
+    #volumes:
+    #  - ./packages/api:/usr/src/app
+    # links:
+    #   - redis
+      # - zecwallet_api
+      # - database
+    # depends_on:
+    #   - nginx-proxy
+networks:
+  elemental_net:
+    external: true
+    driver: bridge

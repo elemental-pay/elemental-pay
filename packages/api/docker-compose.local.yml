@@ -1,0 +1,16 @@
+version: '3' # Version of the Docker Compose file format
+services:
+  elemental_pay_api:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    restart: always
+    volumes:
+      - ./:/app
+      - /app/node_modules
+      - /app/.next
+    environment:
+      - VIRTUAL_HOST=api.elemental-pay.local
+      - VIRTUAL_PORT=4040
+      - NODE_ENV=development
+      - APP_ENV=local
