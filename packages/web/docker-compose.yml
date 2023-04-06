@@ -1,6 +1,6 @@
 version: '3'
 services:
-  web:
+  elemental_pay_web:
     build: ./
     environment:
       - PORT=3010

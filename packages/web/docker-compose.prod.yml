@@ -1,6 +1,6 @@
 version: '3' # Version of the Docker Compose file format
 services:
-  web:
+  elemental_pay_web:
     environment:
       - VIRTUAL_HOST=elementalpay.com
       - VIRTUAL_PORT=3010
