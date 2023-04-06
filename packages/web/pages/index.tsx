@@ -37,14 +37,13 @@ export default function Home() {
           <Text fontSize={40} color="white" mb={32}>Elemental Pay</Text>
           <Row>
             <Box>
-              <Text fontFamily="IBM Plex Sans">Accept Crypto Payments</Text>
               <Text fontFamily="IBM Plex Sans" color="white" fontSize={32} lineHeight={40} mb={20}>Accept Crypto Payments</Text>
               <Text fontFamily="IBM Plex Sans" color="white" fontSize={20} lineHeight={24} mb={16}>Accept crypto payments online on your own website, in person or by email.</Text>
               {['Non custodial – bring your own wallet.', 'Private – accept Zcash', 'Simple'].map((txt, i) => (
                 <Text key={i} fontFamily="IBM Plex Sans" color="white" fontSize={20} mb="12px">{`- ${txt}`}</Text>
               ))}
               <Link href="/pay/checkout">
-                <Button minWidth={156} mt={20} height={52}>
+                <Button minWidth={156} mt={20} height={52} style={{ cursor: 'pointer' }}>
                   <_Button.Text fontWeight="bold" color="#003796">START DEMO</_Button.Text>
                 </Button>
               </Link>
