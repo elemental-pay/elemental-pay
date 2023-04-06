@@ -16,8 +16,10 @@ class OAuth2Token(db.Model, OAuth2TokenMixin):
     # user: db.Mapped['User'] = db.relationship(back_populates='tokens')
 
     def expires_at(self):
-        print(1234)
-        return self.issued_at + 999999999999
+        #print(1234) FIXME: REMOVE THIS DEBUG
+        #return self.issued_at + 999999999999
+
+        return self.issued_at + self.expires_in
 
     def is_refresh_token_active(self):
         print(123)
