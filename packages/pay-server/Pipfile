@@ -1,0 +1,35 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+flask = "*"
+flask-sqlalchemy = "*"
+psycopg2 = "*"
+flask-migrate = "*"
+flask-script = "*"
+authlib = "*"
+werkzeug = "*"
+itsdangerous = "*"
+flask-login = "*"
+passlib = "*"
+apifairy = "*"
+flask-cors = "*"
+flask-marshmallow = "*"
+marshmallow-sqlalchemy = "*"
+argon2-cffi = "*"
+nanoid = "*"
+pytest = "*"
+coverage = "*"
+pylint = "*"
+pytest-cov = "*"
+python-dotenv = "*"
+gunicorn = "*"
+requests = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.9"
+python_full_version = "3.9.16"
