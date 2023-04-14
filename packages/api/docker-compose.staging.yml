@@ -1,0 +1,8 @@
+version: '3'
+services:
+  api:
+    environment:
+      - VIRTUAL_HOST=staging-api.elementalpay.com
+      - VIRTUAL_PORT=4040
+      - NODE_ENV=production
+      - APP_ENV=staging

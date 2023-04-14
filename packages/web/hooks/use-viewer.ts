@@ -32,13 +32,21 @@ export interface ViewerNotFoundError {
 };
 
 const useViewer = () => {
-  const { loading, data } = useQuery<{ viewer: Viewer | ViewerNotFoundError }>(GET_VIEWER);
+  const { loading, data, error } = useQuery<{ viewer: Viewer | ViewerNotFoundError }>(GET_VIEWER);
   
   if (loading) {
-    return { loading };
+    return { loading, viewer: null };
+  }
+  if (error) {
+    // FIXME: 
+    localStorage.removeItem('accessToken');
+    localStorage.removeItem('refreshToken');
+    localStorage.removeItem('expiresIn');
+    localStorage.removeItem('tokenType');
+    return { loading: false, error, viewer: null };
   }
 
-  return data.viewer
+  return { viewer: data.viewer, loading: false }
 };
 
 export default useViewer;

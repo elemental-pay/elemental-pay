@@ -1,14 +1,16 @@
 import { mergeResolvers } from '@graphql-tools/merge';
 
-import scalars from './scalars';
+import scalarResolver from './scalar.resolver';
 
 import userResolver from './user.resolver';
-// const invoiceResolver = require('./invoice.resolver');
+import utilResolver from './util.resolver';
+import oAuthResolver from './oauth.resolver';
 
 const resolvers = [
-  scalars,
+  scalarResolver,
   userResolver,
-  // invoiceResolver,
+  utilResolver,
+  oAuthResolver,
 ];
 
 export default mergeResolvers(resolvers);

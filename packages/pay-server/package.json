@@ -1,0 +1,16 @@
+{
+  "name": "@elemental-pay/server",
+  "version": "0.0.1",
+  "description": "```sh pipenv run flask run",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start:local": "docker compose -f docker-compose.yml -f docker-compose.local.yml up --build -d",
+    "start:staging": "docker compose -f docker-compose.yml -f docker-compose.staging.yml up --build -d",
+    "start:prod": "docker compose -f docker-compose.yml -f docker-compose.prod.yml up --build -d",
+    "stop": "docker compose down"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT"
+}
