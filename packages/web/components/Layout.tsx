@@ -9,14 +9,14 @@ const Footer = () => (
   </Box>
 )
 
-const Layout = ({ children, ...props }) => {
+const Layout = ({ children, showFooter = true, showLogo = true, ...props }) => {
   return (
     <Box flex={1} width="100%" minHeight="100vh">
-      <Nav />
+      <Nav showLogo={showLogo} />
       <Box flex={1}>
         {children}
       </Box>
-      <Footer />
+      {showFooter && <Footer />}
     </Box>
   );
 };

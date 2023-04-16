@@ -46,9 +46,10 @@ const RightItems = extend(Row, {
 
 export interface Props {
   // clientId: string,
+  showLogo?: boolean,
 };
 
-const Nav: FC<Props> = () => {
+const Nav: FC<Props> = ({ showLogo }) => {
 
   const clientId = config.SSO_CLIENT_ID;
 
@@ -56,11 +57,11 @@ const Nav: FC<Props> = () => {
     <NavContainer>{/* @ts-ignore */}
       <StyledNav>
         <NavContent>
-          <Link href="/">
-            <a>
-              <Text fontSize={24} bold flexShrink={0}>ELEMENTAL PAY</Text>
-            </a>
-          </Link>
+          {showLogo && (
+            <Link href="/">
+              <Text as="span" fontSize={24} bold flexShrink={0}>ELEMENTAL PAY</Text>
+            </Link>
+          )}
           <Row
             justifyContent="space-between"
             width="100%"
@@ -73,22 +74,18 @@ const Nav: FC<Props> = () => {
                 // href={`http://elemental-sso.local/oauth/authorize?response_type=code&scope=profile&client_id=${clientId}&redirect_uri=https://elemental-pay.local/auth/callback`}
                 href="/auth/login"
               >
-                <a>
-                  <Box p={16}>
-                    <Text>LOGIN</Text>
-                  </Box>
-                </a>
+                <Box p={16}>
+                  <Text>LOGIN</Text>
+                </Box>
               </Link>
               <Link
                 // href="http://127.0.0.1:3000/auth/signup"
                 // href={`http://elemental-sso.local/auth/signup?callback_uri=https://elemental-pay.local/auth/callback&scope=profile`}
                 href="/auth/signup"
               >
-                <a>
-                  <Box p={16}>
-                    <Text>SIGNUP</Text>
-                  </Box>
-                </a>
+                <Box p={16}>
+                  <Text>SIGNUP</Text>
+                </Box>
               </Link>
               {/* <Text>Menu</Text> */}
             </RightItems>
