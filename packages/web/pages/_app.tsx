@@ -5,26 +5,31 @@ import { theme } from '@elemental-zcash/components';
 import { RPNativeProvider } from '@react-platform/native';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { ApolloProvider } from '@apollo/client';
+import { IBM_Plex_Sans, IBM_Plex_Serif, IBM_Plex_Mono, Roboto, Roboto_Mono } from 'next/font/google'
 
+// If loading a variable font, you don't need to specify the font weight
+// const inter = Inter({ subsets: ['latin'] })
+const ibmPlexSans = IBM_Plex_Sans({
+  subsets: ['latin'],
+  weight: ['400', '500', '700'],
+})
+const ibmPlexSerif = IBM_Plex_Serif({
+  subsets: ['latin'],
+  weight: ['400', '500', '700'],
+})
+const ibmPlexMono = IBM_Plex_Mono({
+  subsets: ['latin'],
+  weight: ['400', '500', '700'],
+})
+const roboto = Roboto({ subsets: ['latin'], weight: ['400', '700'] })
+const robotoMono = Roboto_Mono({ subsets: ['latin'], weight: ['400', '700'] });
 
 import useWindowViewport from '../components/hooks/use-window-viewport';
 import apolloClient from '../apollo-client';
 
 import '../styles/layout.css';
 
-let WebFont;
 
-try {
-  WebFont = require('webfontloader');
-} catch (err) {}
-
-if (typeof window !== 'undefined' && WebFont) {
-  WebFont.load({
-    google: {
-      families: ['IBM Plex Sans', 'IBM Plex Serif', 'IBM Plex Mono:300,400,500,700', 'Roboto', 'Roboto Mono']//'Roboto:300:400:500:700', 'Roboto Mono:300:400:500:700']
-    },
-  });
-}
 
 const queryClient = new QueryClient({});
 
@@ -48,11 +53,11 @@ fontSizes.h1 = h1;
 
 const typefaces = {
   ibmPlexSans: {
-    light: 'IBM Plex Sans',
-    regular: 'IBM Plex Sans',
-    medium: 'IBM Plex Sans',
-    semiBold: 'IBM Plex Sans',
-    mono: 'IBM Plex Mono'
+    light: ibmPlexSans.style.fontFamily,
+    regular: ibmPlexSans.style.fontFamily,
+    medium: ibmPlexSans.style.fontFamily,
+    semiBold: ibmPlexSans.style.fontFamily,
+    mono: ibmPlexMono.style.fontFamily,
   },
 };
 
@@ -85,31 +90,39 @@ const processStyleFunc = (style) => ({ ...style });
 
 const App = ({ Component, pageProps }: AppProps) => {
   return (
-    <ApolloProvider client={apolloClient}>
-      <QueryClientProvider client={queryClient}>
-        <RPNativeProvider processStyle={processStyleFunc}>
-          <ThemeProvider
-            design={{ Button: {} }}
-            // @ts-ignore
-            colorMode="day"
-            theme={{
-              ...theme,
-              // fonts: {
-              //   ...theme.fonts,
-              //   primary: typefaces.ibmPlexSans.mono,
-              //   primaries: typefaces.ibmPlexSans,
-              //   secondary: typefaces.ibmPlexSans.regular,
-              //   secondaries: typefaces.ibmPlexSans,
-              // }
-            }}
-            >
-            <Wrapper>
-              <Component {...pageProps} />
-            </Wrapper>
-          </ThemeProvider>
-        </RPNativeProvider>
-      </QueryClientProvider>
-    </ApolloProvider>
+    <>
+      {/* <style jsx global>{`
+        html {
+          font-family: ${ibmPlexSans.style.fontFamily} ${ibmPlexSerif.style.fontFamily} ${ibmPlexMono.style.fontFamily} ${roboto.style.fontFamily};
+        }
+      `}</style> */}
+      <ApolloProvider client={apolloClient}>
+        <QueryClientProvider client={queryClient}>
+          <RPNativeProvider processStyle={processStyleFunc}>
+            <ThemeProvider
+              design={{ Button: {} }}
+              colorMode="day"
+              // @ts-ignore
+              theme={{
+                ...theme,
+                fonts: {
+                  ...theme.fonts,
+                  primary: typefaces.ibmPlexSans.mono,
+                  primaries: typefaces.ibmPlexSans,
+                  secondary: typefaces.ibmPlexSans.regular,
+                  secondaries: typefaces.ibmPlexSans,
+                  mono: typefaces.ibmPlexSans.mono,
+                }
+              }}
+              >
+              <Wrapper>
+                <Component {...pageProps} />
+              </Wrapper>
+            </ThemeProvider>
+          </RPNativeProvider>
+        </QueryClientProvider>
+      </ApolloProvider>
+    </>
   );
 };
 

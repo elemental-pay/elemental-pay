@@ -7,6 +7,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "next dev",
+    "dev:staging": "cross-env APP_ENV=staging next dev",
     "build": "next build",
     "start": "next start",
     "start:local": "docker compose -f docker-compose.yml -f docker-compose.local.yml up --build",
@@ -23,6 +24,7 @@
     "@elemental-pay/components": "0.0.1-beta.1",
     "@elemental-zcash/components": "0.0.3",
     "@elemental-zcash/icons": "0.0.1-beta.1",
+    "@next/font": "^13.3.0",
     "@react-platform/core": "0.0.3",
     "@react-platform/native": "0.0.3",
     "@react-platform/svg": "0.0.1",
@@ -31,10 +33,10 @@
     "formik": "^2.2.9",
     "graphql": "^16.6.0",
     "nanoid": "^4.0.2",
-    "next": "^12.2.5",
-    "next-transpile-modules": "^9.0.0",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
+    "next": "^13.3.0",
+    "next-transpile-modules": "^10.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "react-native-web": "^0.15.1",
     "react-primitives": "^0.8.1",
     "react-primitives-svg": "0.0.3",
@@ -50,6 +52,7 @@
     "@types/node": "^18.7.15",
     "@types/react": "^18.0.18",
     "apollo": "^2.34.0",
+    "dotenv": "^16.0.3",
     "typescript": "^4.8.2"
   }
 }
