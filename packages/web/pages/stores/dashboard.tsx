@@ -43,30 +43,6 @@ const ChooseStore = ({
   )
 }
 
-export const navItems = [
-  { name: 'Overview', href: '/dashboard' },
-  { name: 'Stores', href: '/dashboard/stores' },
-  { name: 'Choose Store', component: (
-    <Box m={16} p={16} my={0}>
-      <ChooseStore onChangeStore={() => {}} />
-    </Box>
-  )},
-  {
-    name: 'Payments',
-    items: [
-      { name: 'Invoices', href: '/dashboard/invoices' },
-      { name: 'Point of Sale', href: '/dashboard/pos' },
-    ]
-  },
-  {
-    name: 'Integrations',
-    items: [
-      { name: 'API Tokens', href: '/dashboard/api-tokens' },
-      { name: 'BTCPayServer', href: '/dashboard/btcpay' },
-    ]
-  }
-];
-
 export const makeNavItems = (onChangeStore) => [
   { name: 'Choose Store', component: (
     <Box m={16} p={16} my={0}>
@@ -91,20 +67,18 @@ export const makeNavItems = (onChangeStore) => [
   }
 ];
 
+export const navItems = makeNavItems(() => {});
+
 
 
 export function Dashboard() {
   const { loading, data, error, client } = useQuery<{ viewer: Viewer | ViewerNotFoundError }>(GET_VIEWER);
   // const [sendVerificationEmail, { data: verificationData, loading: verificationLoading, error: verificationError }] = useMutation<{ sendVerificationEmail: boolean }, { address: string }>(SEND_VERIFICATION_EMAIL);
   const apolloClient = useApolloClient();
-  const onChangeStore = useCallback((id) => { console.log({ id }) }, []);
 
-  // const navItems = useCallback(() => {
-  //   return makeNavItems(onChangeStore)
-  // }, [])
   const navItems = useMemo(() => {
-    return makeNavItems(onChangeStore);
-  }, [])
+    return makeNavItems((id) => { console.log({ id }) });
+  }, []);
 
 
   return (
@@ -114,26 +88,13 @@ export function Dashboard() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Layout>
-        {/* <Sidebar navItems={navItems} /> */}
-        <Section minHeight="75vh" alignItems="center">
+      <Layout showFooter={false} showLogo={false}>
+        <Sidebar navItems={navItems} />
+        <Section minHeight="75vh" alignItems="center" ml={[0, 256]}>
           <Text fontSize={40} color="black" mb={32}>Dashboard</Text>
           <Row flex={1} flexWrap="wrap">
-            <Link href="/stores">
-              <Box bg="greys.2" borderRadius={12} width={300} height={300} m={16} alignItems="center" justifyContent="center">
-                <Text fontSize={24} bold>Stores</Text>
-              </Box>
-            </Link>
-            <Link href="/users" style={{ flex: 1 }}>
-              <Box bg="greys.2" borderRadius={12} flex={1} m={16} alignItems="center" justifyContent="center">
-                <Text fontSize={24} bold>Users</Text>
-              </Box>
-            </Link>
-            <Link href="/account" style={{ flex: 1 }}>
-              <Box bg="greys.2" borderRadius={12} width={300} height={300} m={16} alignItems="center" justifyContent="center">
-                <Text fontSize={24} bold>Account</Text>
-              </Box>
-            </Link>
+            <Box bg="greys.2" borderRadius={12} width={300} height={300} m={16}></Box>
+            <Box bg="greys.2" borderRadius={12} flex={1} m={16}></Box>
             <Box bg="greys.2" borderRadius={12} width={300} height={300} m={16}></Box>
             <Box bg="greys.2" borderRadius={12} width={400} height={300} m={16}></Box>
             <Box bg="greys.2" borderRadius={12} flex={1} height={300} m={16}></Box>

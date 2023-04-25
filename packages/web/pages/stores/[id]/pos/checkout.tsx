@@ -5,19 +5,20 @@ import InputField from '@elemental-zcash/components/lib/forms/InputField';
 import TextInput from '@elemental-zcash/components/lib/forms/TextInput';
 
 import { useApolloClient, useMutation, useQuery } from '@apollo/client';
-import GET_VIEWER from '../../graphql/queries/viewer';
-import { Viewer, ViewerNotFoundError } from '../../hooks/use-viewer';
+import GET_VIEWER from '../../../../graphql/queries/viewer';
+import { Viewer, ViewerNotFoundError } from '../../../../hooks/use-viewer';
 
 // import Section from '../components/Section';
 // import VerifyEmailLoginBox from '../components/auth/verify-email-login-box';
 // import SEND_VERIFICATION_EMAIL from '../graphql/mutations/send-verification-email';
 // import { Link } from '../components/common';
 import { TextButton } from '@elemental-zcash/components/lib/buttons';
-import Layout from '../../components/Layout';
-import Section from '../../components/common/Section';
-import Link from '../../components/common/Link';
-import { Sidebar } from '../../components/nav/sidebar';
-import { navItems } from '.';
+import Layout from '../../../../components/Layout';
+import Section from '../../../../components/common/Section';
+import Link from '../../../../components/common/Link';
+import { Sidebar } from '../../../../components/nav/sidebar';
+import { navItems } from '../../dashboard';
+import { Formik } from 'formik';
 
 
 enum Status {
@@ -32,7 +33,7 @@ const StoreItem = ({ children = '', ...props }) => {
   )
 };
 
-export default function PointOfSale() {
+export default function PointOfSaleCheckout() {
   const { loading, data, error, client } = useQuery<{ viewer: Viewer | ViewerNotFoundError }>(GET_VIEWER);
 
   const stores = [];
@@ -54,30 +55,22 @@ export default function PointOfSale() {
         <Sidebar navItems={navItems} />
         <Section minHeight="75vh" alignItems="center" ml={[0, 256]}>
           <Row justifyContent="space-between">
-            <Text fontSize={40} color="black" mb={32}>Stores</Text>
-            <Link href="/dashboard/stores/create">
+            <Text fontSize={40} color="black" mb={32}>BTCPayServer Integration</Text>
+            {/* <Link href="/dashboard/stores/create">
               <Button>Create Store</Button>
-            </Link>
+            </Link> */}
+            <Formik
+              initialValues={{}}
+              onSubmit={() => {}}
+            >
+              {({ }) => (
+                <>
+
+                </>
+              )}
+            </Formik>
           </Row>
-          {{
-            [Status.LOADING]: (
-              <Box alignItems="center" py={40}>
-                <Text>
-                  Loading...
-                </Text>
-              </Box>
-            ),
-            [Status.EMPTY]: (
-              <Box alignItems="center" py={40}>
-                <Text>No stores found, please create one.</Text>
-              </Box>
-            ),
-            [Status.FOUND]: (
-              <>
-                {stores.map((store, i) => <StoreItem key={store.id || `index-${i}`} store={store} />)}
-              </>
-            )
-          }[status]}
+          
         </Section>
       </Layout>
     </Box>

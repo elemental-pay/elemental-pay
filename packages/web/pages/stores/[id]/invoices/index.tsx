@@ -17,9 +17,8 @@ import Layout from '../../../../components/Layout';
 import Section from '../../../../components/common/Section';
 import Link from '../../../../components/common/Link';
 import { Sidebar } from '../../../../components/nav/sidebar';
-import { navItems } from '../..';
+import { navItems } from '../../dashboard';
 import { Formik } from 'formik';
-import { useRouter } from 'next/router';
 
 
 enum Status {
@@ -34,10 +33,8 @@ const StoreItem = ({ children = '', ...props }) => {
   )
 };
 
-export default function PointOfSale() {
-  const router = useRouter();
+export default function Invoices() {
   const { loading, data, error, client } = useQuery<{ viewer: Viewer | ViewerNotFoundError }>(GET_VIEWER);
-  const { id: storeId } = router.query;
 
   const stores = [];
   const status = loading
@@ -58,7 +55,7 @@ export default function PointOfSale() {
         <Sidebar navItems={navItems} />
         <Section minHeight="75vh" alignItems="center" ml={[0, 256]}>
           <Row justifyContent="space-between">
-            <Text fontSize={40} color="black" mb={32}>Point of Sale for Store {storeId}</Text>
+            <Text fontSize={40} color="black" mb={32}>BTCPayServer Integration</Text>
             {/* <Link href="/dashboard/stores/create">
               <Button>Create Store</Button>
             </Link> */}

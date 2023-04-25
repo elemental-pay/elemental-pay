@@ -29,7 +29,6 @@ export const Sidebar = ({ navItems }) => {
           <Text as="span" fontSize={24} bold flexShrink={0}>ELEMENTAL PAY</Text>
         </Link>
       </Box>
-      <Box height={20}></Box>
       {navItems.map((item) => (
         <Box pt={item.items && 16}>
           {item.component || (item.items ? (

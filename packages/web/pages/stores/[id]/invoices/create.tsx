@@ -17,7 +17,7 @@ import Layout from '../../../../components/Layout';
 import Section from '../../../../components/common/Section';
 import Link from '../../../../components/common/Link';
 import { Sidebar } from '../../../../components/nav/sidebar';
-import { navItems } from '../..';
+import { navItems } from '../../dashboard';
 import { Formik } from 'formik';
 
 
