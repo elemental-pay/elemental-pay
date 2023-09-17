@@ -6,7 +6,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "next dev",
+    "dev": "PORT=3030 next dev",
     "dev:staging": "cross-env APP_ENV=staging next dev",
     "build": "next build",
     "start": "next start",
@@ -21,10 +21,9 @@
   "dependencies": {
     "@apollo/client": "^3.7.0",
     "@elemental-design/material-color-utilities": "^0.2.0-beta.0",
-    "@elemental-pay/components": "0.0.1-beta.1",
+    "@elemental-pay/components": "^0.0.1-beta.1",
     "@elemental-zcash/components": "0.0.3",
     "@elemental-zcash/icons": "0.0.1-beta.1",
-    "@next/font": "^13.3.0",
     "@react-platform/core": "0.0.3",
     "@react-platform/native": "0.0.3",
     "@react-platform/svg": "0.0.1",
