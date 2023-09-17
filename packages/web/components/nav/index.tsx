@@ -46,9 +46,10 @@ const RightItems = extend(Row, {
 
 export interface Props {
   // clientId: string,
+  showLogo?: boolean,
 };
 
-const Nav: FC<Props> = () => {
+const Nav: FC<Props> = ({ showLogo }) => {
 
   const clientId = config.SSO_CLIENT_ID;
 
@@ -56,9 +57,11 @@ const Nav: FC<Props> = () => {
     <NavContainer>{/* @ts-ignore */}
       <StyledNav>
         <NavContent>
-          <Link href="/">
-            <Text fontSize={24} bold flexShrink={0}>ELEMENTAL PAY</Text>
-          </Link>
+          {showLogo && (
+            <Link href="/">
+              <Text as="span" fontSize={24} bold flexShrink={0}>ELEMENTAL PAY</Text>
+            </Link>
+          )}
           <Row
             justifyContent="space-between"
             width="100%"

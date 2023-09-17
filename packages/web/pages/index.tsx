@@ -44,7 +44,7 @@ export default function Home() {
               ))}
               <Link href="/pay/checkout">
                 <Button minWidth={156} mt={20} height={52} style={{ cursor: 'pointer' }}>
-                  <_Button.Text fontWeight="bold" color="#003796">START DEMO</_Button.Text>
+                  <_Button.Text fontFamily="mono" fontWeight="bold" color="#003796">START DEMO</_Button.Text>
                 </Button>
               </Link>
             </Box>
