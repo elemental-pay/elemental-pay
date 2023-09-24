@@ -1,6 +1,6 @@
 {
   "name": "@elemental-pay/components",
-  "version": "0.0.1-beta.1",
+  "version": "0.0.2-beta.3",
   "description": "",
   "main": "lib/index.js",
   "scripts": {
@@ -15,7 +15,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@elemental-zcash/components": "0.0.3",
+    "@elemental-zcash/components": "0.0.3-beta.0",
     "@types/react": "^18.0.15",
     "elemental-react": "^0.4.0-beta.4",
     "react": "^18.2.0",
@@ -23,7 +23,7 @@
   },
   "peerDependencies": {
     "react": "^16.0 || ^17.0 || ^18.0",
-    "elemental-react": "^0.0.1",
-    "@elemental-zcash/components": "^0.0.3"
+    "elemental-react": "0.x",
+    "@elemental-zcash/components": "0.x"
   }
 }
