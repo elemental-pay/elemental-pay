@@ -5,6 +5,7 @@ import { theme } from '@elemental-zcash/components';
 import { RPNativeProvider } from '@react-platform/native';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { ApolloProvider } from '@apollo/client';
+import { SessionProvider } from 'next-auth/react'
 import { IBM_Plex_Sans, IBM_Plex_Serif, IBM_Plex_Mono, Roboto, Roboto_Mono } from 'next/font/google'
 
 // If loading a variable font, you don't need to specify the font weight
@@ -88,7 +89,10 @@ const Wrapper = ({ children }) => {
 
 const processStyleFunc = (style) => ({ ...style });
 
-const App = ({ Component, pageProps }: AppProps) => {
+const App = ({
+  Component,
+  pageProps: { session, ...pageProps },
+}: AppProps) => {
   return (
     <>
       {/* <style jsx global>{`
@@ -116,7 +120,9 @@ const App = ({ Component, pageProps }: AppProps) => {
               }}
               >
               <Wrapper>
-                <Component {...pageProps} />
+                <SessionProvider session={session}>
+                  <Component {...pageProps} />
+                </SessionProvider>
               </Wrapper>
             </ThemeProvider>
           </RPNativeProvider>
