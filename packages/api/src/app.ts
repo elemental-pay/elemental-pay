@@ -2,11 +2,13 @@
 import path from 'path';
 import express, { Router } from 'express';
 import helmet from 'helmet';
-import { graphqlHTTP } from 'express-graphql';
+import http from 'http';
+// import { graphqlHTTP } from 'express-graphql';
 import log from 'loglevel';
 import fs from 'fs';
 import { getIntrospectionQuery } from 'graphql';
 import fetch from 'node-fetch';
+import { expressMiddleware } from '@apollo/server/express4';
 import ExpressOAuthServer from 'express-oauth-server';
 // import OAuth2Server from 'express-oauth-server';
 import { isBefore, parse } from 'date-fns';
@@ -30,6 +32,7 @@ import { AuthenticationError } from './errors';
 import { UserType } from './models';
 import { Viewer } from './types';
 import { getUserFromAccessToken, oAuthClient } from './services/oauth.service';
+import { makeApolloServer } from './apollo';
 
 // import { db } from './data/pg';
 
@@ -45,6 +48,8 @@ interface WithOAuthServer {
 type AppInterface = express.Application & WithOAuthServer;
 
 const app: AppInterface = express();
+
+export const server = http.createServer(app);
 
 
 if (process.env.NODE_ENV === 'development') {
@@ -275,14 +280,14 @@ app.post('/oauth/authorize', function(req, res) {
 
 
 
-app.use('/graphql', graphqlHTTP(async (request) => {
-  return {
-    schema,
-    context: await getContextFromRequest(request),
-    graphiql: process.env.NODE_ENV === 'development',
-    introspection: process.env.NODE_ENV === 'development'
-  };
-}));
+// app.use('/graphql', graphqlHTTP(async (request) => {
+//   return {
+//     schema,
+//     context: await getContextFromRequest(request),
+//     graphiql: process.env.NODE_ENV === 'development',
+//     introspection: process.env.NODE_ENV === 'development'
+//   };
+// }));
 
 // TODO: Add auth for this and make it an API route
 // app.use('/schema.json', async (req, res) => {
@@ -320,11 +325,21 @@ const routeMiddleware = routes(router);
 
 app.use(routeMiddleware);
 
-app.use((_, res) => {
-  res.status(404).json({ statusCode: 404, error: 'Not Found', message: 'Page not found' });
-});
+(async () => {
+  const apolloServer = await makeApolloServer(app, server);
+  await apolloServer.start();
 
-app.use((err, req, res) => {
+  app.use('/graphql', cors(corsOptions), express.json(), expressMiddleware(apolloServer, {
+    context: async ({ req }) => {
+      return await getContextFromRequest(req);
+    }
+  }));
+
+  app.use((_, res) => {
+    res.status(404).json({ statusCode: 404, error: 'Not Found', message: 'Page not found' });
+  });
+
+  app.use((err, req, res) => {
   // @ts-ignore
   res.locals.message = err.message;
   // @ts-ignore
@@ -334,7 +349,8 @@ app.use((err, req, res) => {
 
   // @ts-ignore
   res.end();
-});
+  });
+})();
 
 export default app;
 

@@ -8,13 +8,11 @@ import { Client } from 'redis-om';
 dotenv.config();
 
 
-import app from './app';
+import app, { server } from './app';
 import { publisher, redisClient, subscriber } from './data';
 import { initializeRedisOm } from './data/redis';
 
 const port = process.env.PORT || 4040;
-
-const server = http.createServer(app);
 
 // export let redisOmClient: Client;
 
