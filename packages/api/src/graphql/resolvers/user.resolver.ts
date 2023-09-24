@@ -1,6 +1,8 @@
 // import { User } from '../../models';
 
-import { makeError } from '../utils';
+import log from 'loglevel';
+import { APIError, ErrorCodes } from '../utils';
+import { GraphQLContext } from '../../apollo';
 
 export default {
   User: {
@@ -14,20 +16,20 @@ export default {
     // },
   },
   Query: {
-    users: async (obj, args, context) => {
-      const users = await context.users.all();
+    users: async (obj, args, context: GraphQLContext) => {
+      const users = await context.users.all(context.viewer);
       console.log({ users });
 
       return users.map(({ users }) => users);
     },
-    user: async (_, { id }, context) => {
+    user: async (_, { id }, context: GraphQLContext) => {
       console.log({ id });
-      const user = await context.users.byId(id);
+      const user = await context.users.findById(context.viewer, id);
 
       return user;
     },
     userByName: async (_, { name }, context) => {
-      const [user] = await context.users.byId(name);
+      const [user] = await context.users.findById(name);
 
       return user;
     },
@@ -40,7 +42,7 @@ export default {
         const newUser = await context.users.create({ uuid: id, ...input });
 
         if (!newUser || newUser instanceof Error) {
-          return makeError();
+          throw new APIError('Failed to create user', ErrorCodes.MISC_ERROR);
         }
 
         return {
@@ -50,7 +52,7 @@ export default {
         };
       } catch (error) {
         console.log(error)
-        return makeError({ error });
+        throw new APIError('Error occurred', ErrorCodes.MISC_ERROR);
       }
     },
     updateUser: async (_, { id, user }, context) => {
@@ -58,7 +60,7 @@ export default {
         const updatedUserRes = await context.users.put(id, user);
 
         if (!updatedUserRes) {
-          return makeError();
+            throw new APIError('Error occurred', ErrorCodes.MISC_ERROR);
         }
 
         const updatedUser = await context.users.byId(id);
@@ -70,14 +72,15 @@ export default {
         };
       } catch (error) {
         console.log({ error });
-        return makeError({ error });
+        log.debug({ error })
+        throw new APIError('Error occurred', ErrorCodes.MISC_ERROR);
       }
     },
     deleteUser: async (_, { id }, context) => {
       try {
         const success = await context.users.delete(id);
         if (!success) {
-          return makeError();
+            throw new APIError('Error occurred', ErrorCodes.MISC_ERROR);
         }
 
         return {
@@ -85,7 +88,8 @@ export default {
           message: 'Success',
         };
       } catch (error) {
-        return makeError({ error });
+        log.debug({ error })
+        throw new APIError('Error occurred', ErrorCodes.MISC_ERROR);
       }
     },
   },
