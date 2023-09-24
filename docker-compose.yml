@@ -1,0 +1,21 @@
+version: '3'
+services:
+  elemental_pay_api:
+    build: .
+    environment:
+      - PORT=4040
+    networks:
+      - elemental_net
+    env_file:
+      .env
+  elemental_pay_web:
+    build: ./packages/web
+    environment:
+      - PORT=3000
+    env_file: ./packages/web/.env
+    networks:
+      - elemental_net
+networks:
+  elemental_net:
+    external: true
+    driver: bridge

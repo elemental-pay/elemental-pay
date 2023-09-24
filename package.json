@@ -4,7 +4,12 @@
   "description": "## Payment Gateway Adapter",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "docker compose -f docker-compose.yml up --build",
+    "start:local": "docker compose -f docker-compose.yml -f docker-compose.local.yml up --build",
+    "start:staging": "docker compose -f docker-compose.yml -f docker-compose.staging.yml up",
+    "start:prod": "docker compose -f docker-compose.yml -f docker-compose.prod.yml up"
+
   },
   "repository": {
     "type": "git",
