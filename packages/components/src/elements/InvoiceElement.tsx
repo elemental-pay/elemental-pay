@@ -59,7 +59,7 @@ const InvoiceElement = ({ onCopyPress, address = '', memo = '', amount, currency
           }}
           sizeWeb="100%"
           // value={`zcash:${zaddr}?amount=0.001&memo=${memo}`}
-          value={`zcash:${address}?amount=${amount}&memo=${memo}`}
+          value={`zcash:${address}?amount=${amount}&memo=${memo.replace(/=/g, '')}`}
         />
       </Box>
       <Box width="100%" maxWidth="100vw">
