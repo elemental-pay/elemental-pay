@@ -32,7 +32,7 @@ import '../styles/layout.css';
 
 
 
-const queryClient = new QueryClient({});
+export const queryClient = new QueryClient({});
 
 const fontSizes = [96, 60, 48, 34, 24, 20, 16, 14];
 const [h1, h2, h3, h4, h5, h6] = fontSizes;
@@ -52,7 +52,7 @@ const lineHeights = [h1, h2, h3, h4, h5, h6].map(n =>
 // @ts-ignore
 fontSizes.h1 = h1;
 
-const typefaces = {
+export const typefaces = {
   ibmPlexSans: {
     light: ibmPlexSans.style.fontFamily,
     regular: ibmPlexSans.style.fontFamily,
@@ -63,7 +63,7 @@ const typefaces = {
 };
 
 
-const getBreakpoint = (w) => {
+export const getBreakpoint = (w) => {
   const width = Number(w);
 
   if (width <= 768) {
@@ -87,7 +87,7 @@ const Wrapper = ({ children }) => {
   );
 }
 
-const processStyleFunc = (style) => ({ ...style });
+export const processStyleFunc = (style) => ({ ...style });
 
 const App = ({
   Component,
